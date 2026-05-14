@@ -313,10 +313,9 @@
     <div class="prog-seg active"></div>
     <div class="prog-seg"></div>
     <div class="prog-seg"></div>
-    <div class="prog-seg"></div>
   </div>
   <div style="height:20px"></div>
-  <div class="step-label">Step 1 of 4 · প্রথম ধাপ</div>
+  <div class="step-label">Step 1 of 3 · প্রথম ধাপ</div>
   <div class="step-title">What will they use it for?</div>
   <div class="step-sub">TV কী কী কাজে ব্যবহার হবে?</div>
   <div class="multi-hint">✓ Select all that apply</div>
@@ -356,39 +355,38 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════
-     SCREEN 2 — ROOM SIZE
+     SCREEN 2 — VIEWING DISTANCE
 ═══════════════════════════════════════════════════ -->
 <div id="s2" class="screen">
   <div class="progress-bar">
     <div class="prog-seg active"></div>
     <div class="prog-seg active"></div>
     <div class="prog-seg"></div>
-    <div class="prog-seg"></div>
   </div>
   <div style="height:20px"></div>
   <div class="back-link" onclick="goTo('s1')">← Back</div>
-  <div class="step-label">Step 2 of 4 · দ্বিতীয় ধাপ</div>
-  <div class="step-title">Room size?</div>
-  <div class="step-sub">ঘরের আকার কত?</div>
-  <div class="chip-grid" id="room-chips">
-    <div class="chip" data-val="small" onclick="pickOne('room',this)">
-      <span class="en">🏠 Small bedroom</span>
-      <span class="bn">ছোট বেডরুম · ~10ft</span>
+  <div class="step-label">Step 2 of 3 · দ্বিতীয় ধাপ</div>
+  <div class="step-title">How far will you sit from the TV?</div>
+  <div class="step-sub">TV থেকে কত দূরে বসবেন?</div>
+  <div class="chip-grid single-col" id="room-chips">
+    <div class="chip" data-val="close" onclick="pickOne('room',this)">
+      <span class="en">📏 Under 1.5m — small bedroom or study</span>
+      <span class="bn">১.৫ মিটারের কম — ছোট বেডরুম বা স্টাডি</span>
       <span class="tick">✓</span>
     </div>
     <div class="chip" data-val="medium" onclick="pickOne('room',this)">
-      <span class="en">🛋️ Medium living room</span>
-      <span class="bn">মাঝারি লিভিং · ~12–15ft</span>
+      <span class="en">📏 1.5m – 2.0m — standard living room</span>
+      <span class="bn">১.৫ – ২.০ মিটার — সাধারণ লিভিং রুম</span>
       <span class="tick">✓</span>
     </div>
-    <div class="chip" data-val="large" onclick="pickOne('room',this)">
-      <span class="en">🏡 Large living room</span>
-      <span class="bn">বড় লিভিং · 15ft+</span>
+    <div class="chip" data-val="far" onclick="pickOne('room',this)">
+      <span class="en">📏 2.0m – 2.5m — large living room</span>
+      <span class="bn">২.০ – ২.৫ মিটার — বড় লিভিং রুম</span>
       <span class="tick">✓</span>
     </div>
-    <div class="chip" data-val="open" onclick="pickOne('room',this)">
-      <span class="en">🏢 Open plan / Hall</span>
-      <span class="bn">খোলা জায়গা / হল</span>
+    <div class="chip" data-val="vfar" onclick="pickOne('room',this)">
+      <span class="en">📏 Over 2.5m — open plan or hall</span>
+      <span class="bn">২.৫ মিটারের বেশি — খোলা জায়গা বা হল</span>
       <span class="tick">✓</span>
     </div>
   </div>
@@ -403,11 +401,10 @@
     <div class="prog-seg active"></div>
     <div class="prog-seg active"></div>
     <div class="prog-seg active"></div>
-    <div class="prog-seg"></div>
   </div>
   <div style="height:20px"></div>
   <div class="back-link" onclick="goTo('s2')">← Back</div>
-  <div class="step-label">Step 3 of 4 · তৃতীয় ধাপ</div>
+  <div class="step-label">Step 3 of 3 · তৃতীয় ধাপ</div>
   <div class="step-title">What matters most?</div>
   <div class="step-sub">কোনগুলো গুরুত্বপূর্ণ?</div>
   <div class="multi-hint">✓ Select all that apply</div>
@@ -443,54 +440,14 @@
       <span class="tick">✓</span>
     </div>
   </div>
-  <button class="btn-primary" id="n3" disabled onclick="goTo('s4')">Next → পরবর্তী</button>
+  <button class="btn-primary" id="n3" disabled onclick="recommend()">See Recommendation → সুপারিশ দেখুন</button>
 </div>
 
 <!-- ═══════════════════════════════════════════════════
-     SCREEN 4 — BUDGET
+     SCREEN 4 — RESULTS (was screen 5)
 ═══════════════════════════════════════════════════ -->
 <div id="s4" class="screen">
-  <div class="progress-bar">
-    <div class="prog-seg active"></div>
-    <div class="prog-seg active"></div>
-    <div class="prog-seg active"></div>
-    <div class="prog-seg active"></div>
-  </div>
-  <div style="height:20px"></div>
   <div class="back-link" onclick="goTo('s3')">← Back</div>
-  <div class="step-label">Step 4 of 4 · চতুর্থ ধাপ</div>
-  <div class="step-title">Budget range?</div>
-  <div class="step-sub">বাজেটের পরিসর কত?</div>
-  <div class="chip-grid single-col" id="budget-chips">
-    <div class="chip" data-val="entry" onclick="pickOne('budget',this)">
-      <span class="en">Entry level — best value for money</span>
-      <span class="bn">কম বাজেটে সেরা বিকল্প</span>
-      <span class="tick">✓</span>
-    </div>
-    <div class="chip" data-val="mid" onclick="pickOne('budget',this)">
-      <span class="en">Mid range — good performance upgrade</span>
-      <span class="bn">মধ্যম বাজেটে ভালো আপগ্রেড</span>
-      <span class="tick">✓</span>
-    </div>
-    <div class="chip" data-val="high" onclick="pickOne('budget',this)">
-      <span class="en">High end — premium experience</span>
-      <span class="bn">প্রিমিয়াম অভিজ্ঞতা</span>
-      <span class="tick">✓</span>
-    </div>
-    <div class="chip" data-val="top" onclick="pickOne('budget',this)">
-      <span class="en">Top of range — the absolute best</span>
-      <span class="bn">সর্বোচ্চ মানের টিভি</span>
-      <span class="tick">✓</span>
-    </div>
-  </div>
-  <button class="btn-primary" id="n4" disabled onclick="recommend()">See Recommendation → সুপারিশ দেখুন</button>
-</div>
-
-<!-- ═══════════════════════════════════════════════════
-     SCREEN 5 — RESULTS
-═══════════════════════════════════════════════════ -->
-<div id="s5" class="screen">
-  <div class="back-link" onclick="goTo('s4')">← Back</div>
   <div id="summary-line" class="summary-line"></div>
   <div id="result-area"></div>
   <div class="share-row">
@@ -502,7 +459,7 @@
 </div>
 
 <script>
-const S = { use: new Set(), room: null, prio: new Set(), budget: null };
+const S = { use: new Set(), room: null, prio: new Set() };
 
 // Each benefit is tagged with the priorities/use-cases it relates to.
 // The recommend() function sorts matched tags to the top before display.
@@ -694,12 +651,13 @@ const MODELS = {
   }
 };
 
-const BUDGET_MAP = { entry:[1], mid:[2,3], high:[3,4], top:[5] };
-const ROOM_BONUS = {
-  small:  { bravia2m2:1, bravia3m2:1 },
-  medium: { bravia3m2:1, bravia5:1 },
-  large:  { bravia5:1, bravia7:1 },
-  open:   { bravia7:1, bravia9:1 }
+// Viewing distance → recommended screen size per model
+const SIZE_MAP = {
+  bravia2m2: { close:'50"', medium:'55"', far:'65"', vfar:'75"' },
+  bravia3m2: { close:'55"', medium:'55" – 65"', far:'65" – 75"', vfar:'75" – 85"' },
+  bravia5:   { close:'55"', medium:'55" – 65"', far:'65" – 75"', vfar:'75" – 85" (98" available)' },
+  bravia7:   { close:'55"', medium:'55" – 65"', far:'65" – 75"', vfar:'75" – 85"' },
+  bravia9:   { close:'65"', medium:'65"', far:'65" – 75"', vfar:'75" – 85"' },
 };
 
 function toggle(group, el) {
@@ -716,8 +674,7 @@ function pickOne(group, el) {
     .forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   S[group] = el.dataset.val;
-  const btns = { room:'n2', budget:'n4' };
-  document.getElementById(btns[group]).disabled = false;
+  document.getElementById('n2').disabled = false;
 }
 
 function goTo(id) {
@@ -727,26 +684,28 @@ function goTo(id) {
 }
 
 function restart() {
-  S.use = new Set(); S.prio = new Set(); S.room = null; S.budget = null;
+  S.use = new Set(); S.prio = new Set(); S.room = null;
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
-  ['n1','n2','n3','n4'].forEach(id => document.getElementById(id).disabled = true);
+  ['n1','n2','n3'].forEach(id => document.getElementById(id).disabled = true);
   goTo('s1');
 }
 
 let lastRec = null;
 
 function recommend() {
-  const levels = BUDGET_MAP[S.budget];
-  const candidates = Object.entries(MODELS).filter(([,m]) => levels.includes(m.level));
+  // Score all 5 models — no budget filter
+  const candidates = Object.entries(MODELS);
   let best = null, bestScore = -1;
   candidates.forEach(([k,m]) => {
     let score = 0;
     S.use.forEach(u => { if (m.strengths.includes(u)) score += 2; });
     S.prio.forEach(p => { if (m.strengths.includes(p)) score += 2; });
-    if (S.room && ROOM_BONUS[S.room]?.[k]) score += 1;
-    if (score > bestScore) { bestScore = score; best = k; }
+    // Tiebreaker: prefer lower level model to avoid upward skew
+    if (score > bestScore || (score === bestScore && best && m.level < MODELS[best].level)) {
+      bestScore = score; best = k;
+    }
   });
-  if (!best) best = candidates[candidates.length-1]?.[0] || 'bravia5';
+  if (!best) best = 'bravia3m2';
 
   const rec = MODELS[best];
   const upKey = Object.keys(MODELS).find(k => MODELS[k].level === rec.level + 1);
@@ -755,11 +714,11 @@ function recommend() {
   const down = downKey ? MODELS[downKey] : null;
   lastRec = { rec, up, down };
 
-  // Summary line
   const useList = [...S.use].join(', ');
   const prioList = [...S.prio].join(', ');
+  const distLabel = { close:'Under 1.5m', medium:'1.5m – 2.0m', far:'2.0m – 2.5m', vfar:'Over 2.5m' };
   document.getElementById('summary-line').innerHTML =
-    `Use: <strong>${useList}</strong> &nbsp;·&nbsp; Room: <strong>${S.room}</strong> &nbsp;·&nbsp; Priority: <strong>${prioList}</strong> &nbsp;·&nbsp; Budget: <strong>${S.budget}</strong>`;
+    `Use: <strong>${useList}</strong> &nbsp;·&nbsp; Distance: <strong>${distLabel[S.room]||'—'}</strong> &nbsp;·&nbsp; Priority: <strong>${prioList}</strong>`;
 
   let html = renderCard(rec, 'rec', '⭐ Recommended · সুপারিশকৃত', true);
   if (up) {
@@ -773,7 +732,7 @@ function recommend() {
 
   document.getElementById('result-area').innerHTML = html;
   document.getElementById('copy-msg').textContent = '';
-  goTo('s5');
+  goTo('s4');
 }
 
 function renderCard(m, type, badge, featured, prefix) {
@@ -801,6 +760,12 @@ function renderCard(m, type, badge, featured, prefix) {
   }).join('');
 
   const prefixHtml = prefix ? `<div class="card-prefix">${prefix}</div>` : '';
+
+  // Size recommendation for featured card only
+  const sizeHtml = featured && S.room && SIZE_MAP[Object.keys(MODELS).find(k => MODELS[k] === m)] ?
+    `<div style="display:inline-flex;align-items:center;gap:6px;background:#E6F1FB;border-radius:20px;padding:4px 12px;margin-bottom:12px;font-size:12px;font-weight:600;color:#0C447C;">
+      📐 Recommended size: ${SIZE_MAP[Object.keys(MODELS).find(k => MODELS[k] === m)][S.room]}
+    </div><br>` : '';
 
   // Dynamic upsell script — pick the most relevant category from customer selections
   let upsellHtml = '';
@@ -836,7 +801,7 @@ function renderCard(m, type, badge, featured, prefix) {
       <span class="result-badge ${badgeClass}">${badge}</span>
       <div class="model-name">${m.name}</div>
       <div class="model-tier">${m.tier}</div>
-      ${prefixHtml}
+      ${sizeHtml}${prefixHtml}
       <ul class="benefit-list">${items}</ul>
       ${tipHtml}${upsellHtml}${rejHtml}
     </div>`;
@@ -849,8 +814,9 @@ function buildCopyText() {
   const cats = ['sports','gaming','cinema','brightness','colour','sound','value'];
   const match = cats.find(c => [...interests].includes(c)) || 'value';
 
+  const distLabel = { close:'Under 1.5m', medium:'1.5m – 2.0m', far:'2.0m – 2.5m', vfar:'Over 2.5m' };
   let t = `BRAVIA RECOMMENDATION\n`;
-  t += `Use: ${[...S.use].join(', ')} | Room: ${S.room} | Priority: ${[...S.prio].join(', ')} | Budget: ${S.budget}\n\n`;
+  t += `Use: ${[...S.use].join(', ')} | Distance: ${distLabel[S.room]||'—'} | Priority: ${[...S.prio].join(', ')}\n\n`;
   t += `RECOMMENDED: ${rec.name} (${rec.tier})\n`;
   const scored = rec.benefits.map(b => ({ ...b, score: b.tags.filter(tg => interests.has(tg)).length }));
   scored.sort((a,b) => b.score - a.score);
