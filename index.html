@@ -95,8 +95,6 @@
     <div class="chip" data-val="cinema" onclick="tog('use',this)"><span class="en">🎬 Movies &amp; Series</span><span class="bn">সিনেমা ও ওয়েব সিরিজ</span><span class="obadge"></span></div>
     <div class="chip" data-val="gaming" onclick="tog('use',this)"><span class="en">🎮 Gaming</span><span class="bn">গেমিং</span><span class="obadge"></span></div>
     <div class="chip" data-val="sports" onclick="tog('use',this)"><span class="en">⚽ Sports</span><span class="bn">খেলাধুলা</span><span class="obadge"></span></div>
-    <div class="chip" data-val="family" onclick="tog('use',this)"><span class="en">👨‍👩‍👧 Family / General</span><span class="bn">পরিবার / সাধারণ</span><span class="obadge"></span></div>
-    <div class="chip" data-val="music" onclick="tog('use',this)"><span class="en">🎵 Music &amp; Entertainment</span><span class="bn">মিউজিক ও বিনোদন</span><span class="obadge"></span></div>
     <div class="chip" data-val="youtube" onclick="tog('use',this)"><span class="en">▶️ YouTube &amp; Streaming</span><span class="bn">ইউটিউব ও স্ট্রিমিং</span><span class="obadge"></span></div>
   </div>
   <button class="btn-primary" id="n1" disabled onclick="goTo('s2')">Next → পরবর্তী</button>
@@ -111,9 +109,9 @@
   <div class="step-title">How is your room lighting?</div>
   <div class="step-sub">আপনার ঘরের আলোর পরিবেশ কেমন?</div>
   <div class="chip-grid single-col" id="lighting-chips">
-    <div class="chip" data-val="dim" onclick="pickOne('lighting',this)"><span class="en">🌥️ Dim or controlled lighting</span><span class="bn">মৃদু বা নিয়ন্ত্রিত আলো</span><span class="tick">✓</span></div>
-    <div class="chip" data-val="natural" onclick="pickOne('lighting',this)"><span class="en">🌤️ Natural light from windows</span><span class="bn">জানালা থেকে প্রাকৃতিক আলো</span><span class="tick">✓</span></div>
-    <div class="chip" data-val="bright" onclick="pickOne('lighting',this)"><span class="en">☀️ Very bright or open room</span><span class="bn">অনেক উজ্জ্বল বা খোলা ঘর</span><span class="tick">✓</span></div>
+    <div class="chip" data-val="dim" onclick="pickOne('lighting',this)"><span class="en">🌥️ Dim or low light</span><span class="bn">মৃদু বা কম আলো</span><span class="tick">✓</span></div>
+    <div class="chip" data-val="natural" onclick="pickOne('lighting',this)"><span class="en">🌤️ Bright with natural light</span><span class="bn">প্রাকৃতিক আলোয় উজ্জ্বল</span><span class="tick">✓</span></div>
+    <div class="chip" data-val="bright" onclick="pickOne('lighting',this)"><span class="en">☀️ Very bright — hard to see the screen sometimes</span><span class="bn">অনেক উজ্জ্বল — কখনো স্ক্রিন দেখতে কষ্ট হয়</span><span class="tick">✓</span></div>
   </div>
   <button class="btn-primary" id="n2" disabled onclick="goTo('s3')">Next → পরবর্তী</button>
 </div>
@@ -143,7 +141,7 @@
   <div class="step-label">Step 4 of 4 · চতুর্থ ধাপ</div>
   <div class="step-title">What matters most?</div>
   <div class="step-sub">কোনগুলো গুরুত্বপূর্ণ?</div>
-  <div class="multi-hint">✓ Select all — first pick counts most</div>
+  <div class="multi-hint">✓ Select up to 2 — first pick counts most · সর্বোচ্চ ২টি বেছে নিন</div>
   <div class="chip-grid" id="prio-chips">
     <div class="chip" data-val="picture" onclick="tog('prio',this)"><span class="en">🖼️ Best Picture</span><span class="bn">সেরা ছবির মান</span><span class="obadge"></span></div>
     <div class="chip" data-val="sound" onclick="tog('prio',this)"><span class="en">🔊 Great Sound</span><span class="bn">দুর্দান্ত শব্দ</span><span class="obadge"></span></div>
@@ -177,7 +175,7 @@ const MODELS={
     name:'Bravia 2M2',
     tier:'Direct LED · 4K · 60Hz · Dolby Atmos',
     level:1,miniled:false,
-    strengths:['value','family','youtube'],
+    strengths:['value','family','youtube','music'],
     benefits:[
       {tags:['picture','cinema','family'],en:'Every show looks sharper and more detailed — even older local content is upscaled to near-4K quality',bn:'প্রতিটি শো আরও স্পষ্ট ও বিস্তারিত দেখায়'},
       {tags:['youtube','family','value'],en:'Google TV with all streaming apps built in — YouTube, Netflix, and more',bn:'Google TV-তে সব স্ট্রিমিং অ্যাপ built-in'},
@@ -199,7 +197,7 @@ const MODELS={
     name:'Bravia 3M2',
     tier:'4K · 120Hz · XR Processor · Dolby Vision',
     level:2,miniled:false,
-    strengths:['value','family','cinema','music','youtube','motion','sports','gaming'],
+    strengths:['value','family','cinema','music','motion','sports','gaming'],
     benefits:[
       {tags:['colour','picture','cinema'],en:'This TV can generate even more shades of colour — images look richer and more lifelike',bn:'এই TV আরও বেশি শেড তৈরি করতে পারে'},
       {tags:['motion','sports','gaming'],en:'Faster 120Hz screen keeps fast action and games sharp and blur-free',bn:'120Hz স্ক্রিন দ্রুত অ্যাকশন ও গেম তীক্ষ্ণ ও blur-free রাখে'},
@@ -301,8 +299,15 @@ function tog(group,el){
   const arr=S[group];
   const val=el.dataset.val;
   const idx=arr.indexOf(val);
-  if(idx>-1){arr.splice(idx,1);el.classList.remove('selected');}
-  else{arr.push(val);el.classList.add('selected');}
+  if(idx>-1){
+    arr.splice(idx,1);
+    el.classList.remove('selected');
+  } else {
+    // Priority limited to 2 selections
+    if(group==='prio'&&arr.length>=2) return;
+    arr.push(val);
+    el.classList.add('selected');
+  }
   document.querySelectorAll(`#${group}-chips .chip`).forEach(c=>{
     const pos=arr.indexOf(c.dataset.val);
     const b=c.querySelector('.obadge');
@@ -339,12 +344,17 @@ function scoreModel(key,m){
   S.use.forEach((u,i)=>{if(m.strengths.includes(u))score+=wt(i);});
   S.prio.forEach((p,i)=>{if(m.strengths.includes(p))score+=wt(i);});
   const bi=S.prio.indexOf('brightness');
-  if(bi>-1&&m.miniled)score+=wt(bi);
+  if(bi>-1&&m.miniled){
+    score+=wt(bi);
+    if(bi===0&&(key==='bravia7'||key==='bravia9')) score+=2;
+  }
   if(bi>-1&&!m.miniled)score-=1;
   if(S.lighting&&m.miniled){
     const pref=LIGHT_PREF[S.lighting];
-    if(key===pref)score+=3;
-    else if(MODELS[key].level>MODELS[pref].level)score-=1;
+    // If brightness is first priority, skip dim lighting bonus — customer is explicitly asking for more brightness
+    const skipDimBonus = bi===0 && S.lighting==='dim';
+    if(!skipDimBonus && key===pref) score+=3;
+    else if(MODELS[key].level>MODELS[pref].level) score-=1;
   }
   if((S.lighting==='natural'||S.lighting==='bright')&&!m.miniled)score-=2;
   return score;
@@ -357,6 +367,19 @@ function recommend(){
     if(sc>bestScore||(sc===bestScore&&best&&m.level<MODELS[best].level)){bestScore=sc;best=k;}
   });
   if(!best)best='bravia3m2';
+
+  // Value cap at Bravia 5
+  if(S.prio.includes('value')&&MODELS[best].level>3) best='bravia5';
+  // Very bright room floor — even value customers need Mini LED in a very bright room
+  if(S.lighting==='bright'&&S.prio.includes('value')&&MODELS[best].level<3) best='bravia5';
+  // YouTube only cap — casual streaming doesn't need Mini LED unless bright room or brightness priority
+  const youtubeOnly=S.use.length===1&&S.use[0]==='youtube';
+  if(youtubeOnly&&S.lighting!=='bright'&&!S.prio.includes('brightness')&&MODELS[best].level>2)
+    best='bravia3m2';
+  // Bravia 9 gate: very bright + brightness priority + at least one premium use case
+  const premiumUse=['cinema','gaming','sports'];
+  const hasPremiumUse=S.use.some(u=>premiumUse.includes(u));
+  if(best==='bravia9'&&!(S.lighting==='bright'&&S.prio.includes('brightness')&&hasPremiumUse)) best='bravia7';
 
   const rec=MODELS[best];
   const upKey=Object.keys(MODELS).find(k=>MODELS[k].level===rec.level+1);
